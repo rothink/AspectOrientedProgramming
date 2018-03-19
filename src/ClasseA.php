@@ -9,5 +9,8 @@
 namespace Aspect;
 
 class ClasseA {
-    public function executa(){}
+    public function executa()
+    {
+
+    }
 }

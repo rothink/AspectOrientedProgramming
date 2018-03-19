@@ -9,5 +9,8 @@
 namespace Aspect;
 
 class ClasseB {
-    public function executa() {}
+    public function executa()
+    {
+        sleep(rand(1, 5));
+    }
 }

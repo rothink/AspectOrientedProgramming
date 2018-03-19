@@ -29,6 +29,16 @@ class ProfiladorAspect implements Aspect
         $obj = $invocation->getThis();
         $id = spl_object_hash($obj);
         $this->objects[$id] = time();
+
+        $obj = $invocation->getThis();
+        echo 'Calling Before Interceptor for method: ',
+        is_object($obj) ? get_class($obj) : $obj,
+        $invocation->getMethod()->isStatic() ? '::' : '->',
+        $invocation->getMethod()->getName(),
+        '()',
+        ' with arguments: ',
+        json_encode($invocation->getArguments()),
+        "<br>\n";
     }
 
     /**
@@ -38,6 +48,7 @@ class ProfiladorAspect implements Aspect
      */
     public function afterMethodExecution(MethodInvocation $invocation)
     {
+
         $obj = $invocation->getThis();
         $id = spl_object_hash($obj);
 
@@ -49,14 +60,15 @@ class ProfiladorAspect implements Aspect
         echo "O método {$method} da classe {$class} levou {$total} para ser executado \n";
     }
 
-
     /**
-     *
-     * @param MethodInvocation $invocation Invocation
-     * @Around("execution(public *->*(*)")
+     * @param MethodInvocation $invocation
+     * @Around("execution(public Aspect\*->*(*))")
      */
-    public function validaAcesso(MethodInvocation $invocation)
+    public function aroundMethodExecution(MethodInvocation $invocation)
     {
-        echo 'oi';
+        $obj = $invocation->getThis();
+        echo '<br>'. 'teste' . '<br>';
     }
+
+
 }

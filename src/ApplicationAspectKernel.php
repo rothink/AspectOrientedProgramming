@@ -28,5 +28,6 @@ class ApplicationAspectKernel extends AspectKernel
      */
     protected function configureAop(AspectContainer $container)
     {
+        $container->registerAspect(new ProfiladorAspect());
     }
 }
